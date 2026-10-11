@@ -1,4 +1,5 @@
-﻿# Environment variables and secrets
+
+# Environment variables and secrets
 .env
 .env.*
 !.env.example
@@ -15,8 +16,7 @@ coverage/
 *.log
 npm-debug.log*
 
-# Local and private data
-*.sql
+# Database dumps and backups
 *.dump
 *.backup
 

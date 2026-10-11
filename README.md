@@ -1,193 +1,161 @@
-# 🏥 MediQueue - Patient Queue Management System
+# 🏥 MediQueue — Patient Queue Management System
 
 A full-stack Patient Queue Management System built with **React 19 + Vite** (frontend) and **Node.js + Express + PostgreSQL** (backend).
 
----
+MediQueue helps clinics manage patient registration, queue tracking, doctor appointments, medical records, medicines, and notifications through a centralized application.
 
 ## ✨ Features
 
 ### 🔐 Authentication & Security
-- JWT-based login, register & forgot password
-- Role-based access (Receptionist / Patient)
-- Rate limiting (100 req/15 min per IP)
-- Security headers (XSS, CSRF, Clickjacking protection)
+- JWT-based login, registration, and password reset
+- Role-based access for receptionists and patients
+- API rate limiting
+- Security headers
 - Password hashing with bcryptjs
 
 ### 📊 Dashboard & Analytics
-- Real-time stats (Total patients, Waiting, Consulting, Completed)
-- CSS-based bar charts for department & doctor breakdowns
-- Weekly patient trend visualization
-- Time-based greeting (Good morning/afternoon/evening)
+- Patient, waiting, consultation, and completion statistics
+- Department and doctor breakdowns
+- Weekly patient trends
 - Recent activity timeline
 
 ### 👥 Patient Management
-- Register patients with full details (name, age, gender, doctor, department, reason)
-- Search patients by name, token, or doctor
-- Filter by status & department
-- Patient profile modal with full details
-- Export patient list to CSV
+- Patient registration and details
+- Search by patient name, token, or doctor
+- Filter by status and department
+- Patient profiles
+- CSV export
 
 ### 🔄 Queue Management
-- Live patient queue with auto-refresh (30 seconds)
-- "Last updated X seconds ago" indicator
-- Call next patient / Mark as completed
-- Print queue tickets (thermal-style format)
+- Patient queue tracking
+- Automatic queue refresh
+- Call the next patient
+- Update queue status
+- Print queue tickets
 
 ### 📅 Appointments
-- Schedule appointments with date & time
-- View upcoming/completed/cancelled appointments
-- Status management (scheduled → completed / cancelled)
+- Schedule appointments by date and time
+- View upcoming and completed appointments
+- Manage appointment status
 
 ### 🩺 Medical Records
-- Add diagnosis, prescriptions, and clinical notes
+- Store diagnoses, prescriptions, and clinical notes
 - View patient medical history
-- Previous reports for patient view
+- Access previous reports
 
 ### 💊 Medicines
-- Searchable medicine catalog with categories
-- Prescribe medicines to patients (receptionist)
-- View prescribed medications (patient)
+- Search the medicine catalog
+- Organize medicines by category
+- Prescribe and view patient medications
 
 ### 👨‍⚕️ Doctor Management
-- Add/edit/remove doctors
-- Toggle availability status
-- View department & room assignments
+- Manage doctor details
+- Track availability
+- View departments and room assignments
 
 ### 🔔 Notifications
-- Real-time notifications with unread count
-- Mark as read / Mark all as read
-- Multiple types: info, warning, success, error
+- View notifications and unread counts
+- Mark notifications as read
+- Support multiple notification types
 
 ### 🤖 AI Assistant
 - Built-in chatbot for system navigation help
-- Keyword-based responses for common queries
+- Keyword-based responses to common queries
 
 ### 🌙 Dark Mode
-- Full dark mode support with CSS variables
-- Persisted in localStorage
-- Toggle from Settings or topbar
+- Dark mode styling
+- Theme preference stored in localStorage
+- Theme toggle in the interface
 
 ### 📧 Email Notifications
-- Welcome emails on registration
-- Appointment confirmation emails
-- Queue notification emails
-
----
+- Registration emails
+- Appointment confirmations
+- Queue notifications
 
 ## 🛠 Tech Stack
 
-| Layer      | Technology                          |
-|------------|--------------------------------------|
-| Frontend   | React 19, Vite 8, CSS3              |
-| Backend    | Node.js, Express 5                  |
-| Database   | PostgreSQL                           |
-| Auth       | JWT, bcryptjs                        |
-| Email      | Nodemailer                           |
+| Layer | Technology |
+|---|---|
+| Frontend | React 19, Vite, CSS3 |
+| Backend | Node.js, Express |
+| Database | PostgreSQL |
+| Authentication | JWT, bcryptjs |
+| Email | Nodemailer |
 
----
+## 📁 Project Structure
+
+```text
+MediQueue/
+├── backend/
+│   ├── package.json
+│   └── src/
+│       ├── server.js
+│       ├── db.js
+│       ├── middleware/
+│       ├── routes/
+│       └── utils/
+├── frontend/
+│   ├── package.json
+│   ├── index.html
+│   └── src/
+│       ├── main.jsx
+│       ├── App.jsx
+│       ├── App.css
+│       └── index.css
+├── .gitignore
+├── README.md
+└── SETUP.md
+```
 
 ## 🚀 Setup Instructions
 
+For complete installation and configuration instructions, see **[SETUP.md](SETUP.md)**.
+
 ### Prerequisites
-- Node.js (v18+)
-- PostgreSQL (v14+)
+- Node.js 18 or later
+- PostgreSQL 14 or later
+- Git
 
-### 1. Database Setup
-```sql
--- Create database
-CREATE DATABASE "patient queue";
+### 1. Configure the database
+Create a PostgreSQL database and configure your backend environment variables using the instructions in `SETUP.md`.
 
--- Run the schema
--- File: backend/src/db/schema.sql
-```
+### 2. Start the backend
 
-### 2. Backend Setup
 ```bash
 cd backend
 npm install
-# Configure .env file with your DB credentials
-npm run dev
+node src/server.js
 ```
 
-### 3. Frontend Setup
+### 3. Start the frontend
+
+Open a separate terminal:
+
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-### 4. Access the app
+### 4. Open the application
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:5000
 
----
+The backend port and available endpoints depend on your configuration and implementation.
 
-## 📁 Project Structure
+## 🔌 API Endpoints
 
-```
-PatientQueueManagement/
-├── backend/
-│   ├── .env
-│   ├── package.json
-│   └── src/
-│       ├── server.js
-│       ├── db.js
-│       ├── db/
-│       │   └── schema.sql
-│       ├── middleware/
-│       │   ├── authMiddleware.js
-│       │   ├── roleMiddleware.js
-│       │   └── rateLimiter.js
-│       ├── routes/
-│       │   ├── authRoutes.js
-│       │   ├── patientRoutes.js
-│       │   ├── appointmentRoutes.js
-│       │   ├── medicalRecordRoutes.js
-│       │   ├── medicineRoutes.js
-│       │   ├── notificationRoutes.js
-│       │   ├── analyticsRoutes.js
-│       │   └── doctorRoutes.js
-│       └── utils/
-│           ├── emailService.js
-│           └── helpers.js
-│
-└── frontend/
-    ├── index.html
-    ├── package.json
-    ├── vite.config.js
-    └── src/
-        ├── main.jsx
-        ├── App.jsx
-        ├── App.css
-        └── index.css
-```
+The backend includes route modules for authentication, patients and queues, appointments, medical records, medicines, notifications, doctors, and analytics.
 
----
+Refer to the source files under `backend/src/routes/` for the implemented endpoints.
 
-## 📡 API Endpoints
+## 🔒 Security Notes
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register user |
-| POST | `/api/auth/login` | Login |
-| POST | `/api/auth/forgot-password` | Reset password |
-| GET | `/api/patients` | Get all patients |
-| POST | `/api/patients` | Register patient |
-| GET | `/api/patients/queue` | Get today's queue |
-| PATCH | `/api/patients/queue/:id` | Update queue status |
-| GET | `/api/patients/my-queue` | Get my queue (auth) |
-| GET/POST | `/api/appointments` | Manage appointments |
-| GET/POST | `/api/medical-records` | Manage medical records |
-| GET/POST | `/api/medicines` | Manage medicines |
-| POST | `/api/medicines/prescribe` | Prescribe medicine |
-| GET | `/api/notifications` | Get notifications (auth) |
-| GET | `/api/analytics/dashboard` | Dashboard stats |
-| GET | `/api/analytics/weekly` | Weekly trends |
-| GET | `/api/analytics/department-stats` | Department breakdown |
-| GET | `/api/analytics/doctor-stats` | Doctor stats |
-| GET/POST | `/api/doctors` | Manage doctors |
-
----
+- Never commit `.env` files, passwords, API keys, JWT secrets, or email credentials.
+- Do not publish real patient information or database backups.
+- Configure your own environment variables before running the application.
+- Use synthetic patient data for demonstrations and testing.
 
 ## 📝 License
+
 ISC
